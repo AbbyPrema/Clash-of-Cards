@@ -1,16 +1,43 @@
 package ca.sheridancollege.project;
+import java.util.ArrayList;
 
+/**
+ *
+ * @author wuhaiyan, Abarna, Gabriel, Sathya
+ */
 public class User extends Player {
-
-	private String username;
-
+ //private ArrayList<PorkerCard> handCards1 = new ArrayList<PorkerCard> ();
+    private GroupOfCards handCards = new GroupOfCards(26);
+    
     public User(String name) {
-        super(name);
+        this.name=name;
+    }
+    public User(){
+        
+    }
+    
+
+    public String getName() {
+        return this.name;
     }
 
-    @Override
-    public void play() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    /**
+     * Ensure that the playerID is unique
+     *
+     * @param name the player name to set
+     */
+
+    public void setName(String name) {
+        this.name=name;
     }
+    public GroupOfCards getCards() {
+        return this.handCards;
+    }
+   
+    public void setCards(GroupOfCards cards){
+        this.handCards=cards;
+    }
+    
+
 
 }

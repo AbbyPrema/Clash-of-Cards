@@ -1,24 +1,20 @@
-/**
- * SYST 17796 Project Base code.
- * Students can modify and extend to implement their game.
- * Add your name as an author and the date!
- */
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
+import java.util.Random;
 /**
  * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
  * once. The group of cards has a maximum size attribute which is flexible for reuse.
  *
  * @author dancye
  * @author Paul Bonenfant Jan 2020
+ * @modifier wuhaiyan, Abarna, Gabriel, Sathya
  */
+
 public class GroupOfCards {
 
     //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
+    private ArrayList<PorkerCard> cards=new ArrayList<PorkerCard>();
     private int size;//the size of the grouping
 
     public GroupOfCards(int size) {
@@ -30,19 +26,19 @@ public class GroupOfCards {
      *
      * @return the group of cards.
      */
-    public ArrayList<Card> getCards() {
-        return cards;
+    public ArrayList<PorkerCard> getCards() {
+        return this.cards;
     }
-
-    public void shuffle() {
-        Collections.shuffle(cards);
+    
+    public void setCards(ArrayList<PorkerCard> cards){
+        this.cards=cards;
     }
 
     /**
      * @return the size of the group of cards
      */
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     /**
@@ -51,5 +47,40 @@ public class GroupOfCards {
     public void setSize(int size) {
         this.size = size;
     }
+    
+    public void shuffle() {
+        
+    Random rand = new Random();
+    PorkerCard temp = new PorkerCard();
+        for (int i = 0; i < this.size; i++) {
+            int randomIndexToSwap = rand.nextInt(this.size);
+            temp = this.cards.get(randomIndexToSwap);
+            this.cards.set(randomIndexToSwap, this.cards.get(i));
+            this.cards.set(i, temp);
+        }
+    }
+    public void printCards(){
+        for(int i=0;i<this.size;i++ ){
+            System.out.println(this.cards.get(i).cardName+"\t"+this.cards.get(i).cardSuite);
+        }
+    }
+    
+    public PorkerCard popCard(){
+        PorkerCard tempcard=new PorkerCard();
+        this.size-=1;
+        tempcard=this.cards.get(0);
+        this.cards.remove(0);
+        return tempcard;       
+    }
+    public void pushCard(PorkerCard tempcard){
+        this.cards.add(tempcard);
+        this.size+=1;
+    }
+    
+    public void pushallCard(ArrayList<PorkerCard> tempcardlist){
+        this.cards.addAll(tempcardlist);
+        this.size+=tempcardlist.size();
+    }
+ 
 
 }//end class
