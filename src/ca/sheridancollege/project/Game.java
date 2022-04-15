@@ -11,8 +11,9 @@ import java.util.Scanner;
  * @author Paul Bonenfant Jan 2020
  * @modifier wuhaiyan, Abarna, Gabriel, Sathya
  */
-public abstract class Game {
-  private final String name;//the title of the game
+public class Game {
+
+    private final String name;//the title of the game
     private ArrayList<User> players;// the players of the game
     
 
@@ -147,4 +148,4 @@ public abstract class Game {
         
     }
 
-}
+}//end class
